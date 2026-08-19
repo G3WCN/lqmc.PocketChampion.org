@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lqmc.PocketChampion.org/sitemap.xml

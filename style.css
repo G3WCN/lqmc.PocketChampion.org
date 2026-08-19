@@ -1,0 +1,187 @@
+/* ============================================================
+   乐趣萌宠 · 奶油玩具风设计系统（Cream Toy Design System）
+   奶油米白 + 蜜桃橙 + 薄荷绿 · 圆润可爱字体 · 大圆角卡片
+   漂浮云朵背景 · 弹性微动效
+   ============================================================ */
+:root {
+  --cream: #FFF6E9;
+  --cream-2: #FFFDF7;
+  --peach: #FF8A5C;
+  --peach-deep: #FF7A45;
+  --peach-soft: #FFB98A;
+  --mint: #7BD3B5;
+  --mint-deep: #5EC4A0;
+  --mint-soft: #BDEBDB;
+  --caramel: #F6C445;
+  --caramel-soft: #FCE9B8;
+  --cocoa: #6B4F3A;
+  --cocoa-soft: #8A6E55;
+  --radius-lg: 26px;
+  --radius-md: 18px;
+  --shadow-soft: 0 12px 32px rgba(255, 138, 92, 0.16);
+  --shadow-mint: 0 12px 32px rgba(123, 211, 181, 0.20);
+  --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --font-round: "Segoe UI", "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Yuanti SC", "Microsoft JhengHei", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-round);
+  letter-spacing: .4px;
+  color: var(--cocoa);
+  background:
+    radial-gradient(circle at 8% 10%, rgba(255, 138, 92, 0.16) 0, rgba(255, 138, 92, 0) 32%),
+    radial-gradient(circle at 92% 6%, rgba(123, 211, 181, 0.20) 0, rgba(123, 211, 181, 0) 34%),
+    radial-gradient(circle at 80% 90%, rgba(246, 196, 69, 0.16) 0, rgba(246, 196, 69, 0) 30%),
+    linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* ---------- 漂浮云朵背景 ---------- */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: 0;
+  bottom: -42px;
+  width: 240px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 0 44px 22px rgba(255, 255, 255, 0.75);
+  filter: blur(8px);
+  pointer-events: none;
+  animation: floaty 13s ease-in-out infinite;
+}
+body::before { left: 4%; }
+body::after { right: 3%; width: 170px; height: 86px; animation-delay: 3.5s; }
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-30px) translateX(14px); }
+}
+
+/* ---------- 大圆角卡片 + 弹性微动效 ---------- */
+.card-hover {
+  border-radius: var(--radius-lg);
+  transition: transform 0.4s var(--ease-elastic), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: var(--shadow-soft);
+}
+section .rounded-2xl,
+section .rounded-xl {
+  border-radius: var(--radius-lg);
+}
+
+.btn-hover {
+  transition: transform 0.4s var(--ease-elastic), box-shadow 0.4s ease, filter 0.3s ease !important;
+  will-change: transform;
+}
+.btn-hover:hover {
+  transform: scale(1.07) !important;
+  box-shadow: 0 14px 26px rgba(255, 122, 69, 0.30) !important;
+}
+
+/* ---------- 蜜桃渐变小按钮 ---------- */
+nav a[href*="77n.cn"],
+nav .bg-accent {
+  color: #fff !important;
+  background: linear-gradient(135deg, var(--peach) 0%, var(--peach-deep) 100%) !important;
+  border-radius: 999px !important;
+}
+nav a[href*="77n.cn"]:hover,
+nav .bg-accent:hover {
+  color: #fff !important;
+  transform: scale(1.05);
+}
+
+/* ---------- 引导区 / CTA 区：蜜桃→薄荷渐变 ---------- */
+.bg-gradient-to-br.from-primary,
+.bg-gradient-to-br.from-primary\/90,
+.bg-gradient-to-r.from-primary.to-secondary {
+  background-image: linear-gradient(135deg, #FF9868 0%, #FFBF96 48%, #9AE6CB 100%) !important;
+}
+
+/* ---------- 顶部导航：奶油毛玻璃 ---------- */
+body > nav {
+  background: rgba(255, 246, 233, 0.86) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 138, 92, 0.18);
+}
+body > nav .text-white { color: var(--cocoa) !important; }
+body > nav .text-xl.font-bold.text-white { color: var(--cocoa) !important; }
+body > nav a { color: var(--cocoa) !important; }
+#mobile-menu {
+  background: rgba(255, 246, 233, 0.96) !important;
+  border-top: 1px solid rgba(255, 138, 92, 0.18);
+}
+
+/* ---------- 页脚：奶油蜜桃面板 ---------- */
+body > footer {
+  background: linear-gradient(135deg, #FFE8D6 0%, #FFF3E3 100%) !important;
+  color: var(--cocoa) !important;
+  border-top: 3px solid var(--peach-soft);
+}
+body > footer .text-white { color: var(--cocoa) !important; }
+body > footer .text-xl, body > footer h4, body > footer .font-bold { color: var(--peach-deep) !important; }
+body > footer .text-gray-400, body > footer .text-gray-500, body > footer p { color: var(--cocoa-soft) !important; }
+body > footer a:hover { color: var(--peach-deep) !important; }
+
+/* ---------- 标题装饰 ---------- */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-round);
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+h2.mb-12 { position: relative; }
+.bg-white { background: #fffdf8 !important; }
+
+/* 文章 / 攻略 / 兑换码 卡片区段落文字统一为暖棕色 */
+.text-gray-600, .text-gray-500 { color: var(--cocoa-soft) !important; }
+.bg-gray-100 { background: #FFF3E8 !important; }
+.bg-gray-50 { background: #FFFAF1 !important; }
+
+/* ---------- 兑换码 / 攻略 表格与数字徽章：蜜桃主题 ---------- */
+.team-table th,
+.pay-table th {
+  background-image: linear-gradient(135deg, var(--peach) 0%, var(--peach-deep) 100%) !important;
+  color: #fff !important;
+}
+.team-table tr:hover,
+.pay-table tr:hover { background-color: rgba(255, 138, 92, 0.12) !important; }
+.team-table tr:nth-child(even),
+.pay-table tr:nth-child(even) { background-color: #FFF7EE !important; }
+.step-number {
+  background: linear-gradient(135deg, var(--peach) 0%, var(--mint-deep) 100%) !important;
+}
+.code-copy:hover { background-color: rgba(255, 138, 92, 0.14) !important; }
+
+/* ---------- 分类胶囊标签 ---------- */
+.rounded-full {
+  border-radius: 999px !important;
+}
+.bg-purple-500\/10, .bg-purple-500\/5 { background: rgba(255, 138, 92, 0.14) !important; }
+.text-purple-500, .text-purple-600 { color: var(--peach-deep) !important; }
+
+/* ---------- 筛选按钮 ---------- */
+.filter-btn {
+  border-radius: 999px !important;
+  transition: transform 0.3s var(--ease-elastic), box-shadow 0.3s ease;
+}
+.filter-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-mint); }
+
+/* ---------- 兑换码主色块 ---------- */
+.bg-gradient-to-r.from-primary.to-purple-600 {
+  background-image: linear-gradient(135deg, var(--peach) 0%, var(--mint) 100%) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before, body::after { animation: none; }
+}
